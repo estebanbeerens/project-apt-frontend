@@ -1,0 +1,9 @@
+.apt-outer {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+
+.apt-inner-remaining {
+    flex-grow : 1;
+}

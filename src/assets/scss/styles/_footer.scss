@@ -1,0 +1,47 @@
+@import "../variables";
+
+.apt-footer {
+  padding: 12px 10px;
+
+  nav {
+    float: left;
+    padding-left: 0;
+  }
+
+  .apt-pull-right {
+    float: right;
+  }
+
+  ul {
+    margin-bottom: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      display: inline-block;
+
+      a {
+        color: inherit;
+        padding: 0.5rem;
+        font-size: 0.8571em;
+        text-transform: uppercase;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .apt-copyright {
+    font-size: 0.8571em;
+    line-height: 1.8;
+  }
+
+  &:after {
+    display: table;
+    clear: both;
+    content: " ";
+  }
+}

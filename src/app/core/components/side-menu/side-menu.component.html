@@ -1,0 +1,52 @@
+<mat-sidenav-container (backdropClick)="onBackdropClick()" 
+                       class="example-sidenav-container">
+
+  <mat-sidenav id="sideNav" mode="push" [opened]="sideNavToggled$ | async" class="sidebar"
+               [mode]="mobileQuery.matches ? 'over' : 'side'"
+               [fixedInViewport]="mobileQuery.matches" >
+
+    <ng-scrollbar visibility="hover">
+
+      <div class="apt-nav-profile">
+        <button mat-button disabled class="p-1">
+          <img src="assets/img/logo.png">
+          <span class="apt-profile-text text-dark">
+            Control panel
+          </span>
+        </button>
+      </div>
+
+      <mat-menu #profileMenu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>account_box</mat-icon>
+          <span>Bekijk profiel</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Uitloggen</span>
+        </button>
+      </mat-menu>
+    
+      <mat-nav-list *ngFor="let menuItem of menuItems">
+        <div *ngIf="menuItem.category" class="apt-category">{{menuItem.category}}</div>
+        <a mat-list-item (click)="closeSideNav()" [routerLink]="[menuItem.path]" 
+          class="apt-navItem {{menuItem.class}}" routerLinkActive="apt-nav-active">
+          <mat-icon>{{menuItem.icon}}</mat-icon>
+          <span>{{menuItem.title}}</span>
+        </a>
+      </mat-nav-list>
+    </ng-scrollbar>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="apt-main-panel apt-outer">
+    <div class="apt-outer">
+      <apt-header-shell></apt-header-shell>
+      <div class="apt-content">
+        <router-outlet></router-outlet>
+      </div>
+      <div class="apt-inner-remaining"></div>
+      <apt-footer></apt-footer>
+    </div>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

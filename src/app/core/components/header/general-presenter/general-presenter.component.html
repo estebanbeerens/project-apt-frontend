@@ -1,0 +1,22 @@
+<mat-toolbar class="apt-toolbar">
+    <mat-toolbar-row>
+        <button mat-icon-button (click)="toggle();">
+        <ng-container *ngIf="sideNavToggled; then thenTemplate; else elseTemplate"></ng-container>
+        <ng-template #thenTemplate>
+            <mat-icon>clear</mat-icon>
+        </ng-template>
+        <ng-template #elseTemplate>
+            <mat-icon>menu</mat-icon>
+        </ng-template>
+        </button>
+
+        <div class="apt-logo">
+            <img src="assets/img/logo.png">
+        </div>
+
+        <span class="apt-logo-text">
+            APT Frontend
+        </span>
+    </mat-toolbar-row>
+</mat-toolbar>
+<div class="apt-toolbar-border"></div>

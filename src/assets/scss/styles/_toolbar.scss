@@ -1,0 +1,43 @@
+@import "../variables";
+
+.apt-toolbar {
+  background-color: transparent !important;
+}
+
+.apt-logo {
+  height: $header-size;
+  padding: 7px 0.7rem;
+
+  margin: 5px;
+
+  img {
+    height: $header-size - 15px;
+  }
+
+  img {
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    height: $header-size - 15px;
+    border: 1px solid $primary;
+    margin-right: 5px;
+  }
+}
+
+.apt-logo-text {
+  font-family: Montserrat, sans-serif;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.apt-toolbar-border {
+  border-top: 1px solid #ccc;
+  @media screen and (min-width: $screen-md) {
+    margin: 0 10px;
+    margin-bottom: 18px;
+  }
+}
+
+.apt-menu-spacer {
+  flex: 1 1 auto;
+}
