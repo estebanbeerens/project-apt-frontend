@@ -4,6 +4,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Observable, Subscription } from 'rxjs';
 import { IContainer } from 'src/app/features/containers/interfaces/container';
 import { ContainersService } from 'src/app/features/containers/services/containers.service';
+import { IShip } from 'src/app/features/ships/interfaces/ship';
+import { ShipsService } from 'src/app/features/ships/services/ships.service';
 
 @Component({
   selector: 'app-shell',
@@ -13,6 +15,7 @@ import { ContainersService } from 'src/app/features/containers/services/containe
 export class InputShellComponent implements OnInit, OnDestroy {
 
   container$: Observable<IContainer>;
+  shipDropdown$: Observable<IShip[]>;
 
   generalForm: FormGroup;
   id: number;
@@ -21,12 +24,16 @@ export class InputShellComponent implements OnInit, OnDestroy {
 
   constructor(
     private formBuilder: FormBuilder,
-    private service: ContainersService,
+    private containersService: ContainersService,
+    private shipsService: ShipsService,
     public dialogRef: MatDialogRef<InputShellComponent>
   ) { }
 
   ngOnInit(): void {
-    this.container$ = this.service.details$;
+    // TODO : Uncomment this
+    // this.shipsService.loadOverview();
+    this.container$ = this.containersService.details$;
+    this.shipDropdown$ = this.shipsService.overview$;
 
     this.sub = this.container$.subscribe((container) => {
       this.loadForm(container);
@@ -56,9 +63,9 @@ export class InputShellComponent implements OnInit, OnDestroy {
 
   submitForm(formOutput: IContainer): void {
     if (this.isNew) {
-        this.service.create(formOutput);
+        this.containersService.create(formOutput);
     } else {
-      this.service.update(this.id, formOutput);
+      this.containersService.update(this.id, formOutput);
     }
     this.closeDialog();
   }

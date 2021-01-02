@@ -4,11 +4,13 @@
 </div>
 <form [formGroup]="generalForm" (ngSubmit)="onSubmit(generalForm.value)">
 
-    <!-- TODO : Make this an option -->
     <mat-form-field class="col-12 col-lg-6 w-100">
         <mat-label>Schip ID</mat-label>
 
-        <input matInput formControlName="schipId" type="number">
+        <mat-select matInput formControlName="schipId">
+            <mat-option *ngFor="let ship of shipDropdown" [value]="ship.id">{{ship.naam}}</mat-option>
+            <mat-option disabled *ngIf="shipDropdown.length <= 0">Er zijn geen schepen.</mat-option>
+        </mat-select>
 
         <mat-error *ngIf="generalForm.controls['schipId'].invalid">
             Schip is vereist

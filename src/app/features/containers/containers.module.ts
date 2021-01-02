@@ -6,8 +6,9 @@ import { OverviewGeneralPresenterComponent } from 'src/app/features/containers/c
 import { OverviewShellComponent } from 'src/app/features/containers/components/overview/shell/shell.component';
 import { InputGeneralPresenterComponent } from 'src/app/features/containers/components/input/general-presenter/general-presenter.component';
 import { InputShellComponent } from 'src/app/features/containers/components/input/shell/shell.component';
-import { ContainersService } from 'src/app/features/containers/services/containers.service';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ContainersService } from 'src/app/features/containers/services/containers.service';
+import { ShipsService } from 'src/app/features/ships/services/ships.service';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     SharedModule
   ],
   providers: [
-    ContainersService
+    ContainersService,
+    ShipsService
   ]
 })
 export class ContainersModule { }
