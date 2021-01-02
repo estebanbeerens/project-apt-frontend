@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'tlb-shared-spinner',
+  selector: 'app-shared-spinner',
   templateUrl: './shared-spinner.component.html',
   styleUrls: ['./shared-spinner.component.scss']
 })
