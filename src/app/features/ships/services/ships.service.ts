@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { IShip as IObject, IShipInitialValue as IObjectInitialValue } from "src/app/features/ships/interfaces/ship";
+import { IShip as IObject, IShip, IShipInitialValue as IObjectInitialValue } from "src/app/features/ships/interfaces/ship";
 import { environment } from "src/environments/environment";
 
 @Injectable({
@@ -27,7 +27,7 @@ export class ShipsService {
     }
 
     loadOverview() {
-        this._loaderInit();
+        // this._loaderInit();
         this.http.get<IObject[]>(`${this.baseUrl}/all`).subscribe((response) => {
             this.overview$.next(response);
             this._loaderStop();
@@ -42,13 +42,17 @@ export class ShipsService {
         });
     }
 
-    create(body: any) {
+    resetDetails() {
+        this.details$.next(IObjectInitialValue);
+    }
+
+    create(body: IShip) {
         this.http.post<IObject>(`${this.baseUrl}`, body).subscribe((response) => {
             this.overview$.next([...this.overview$.value, response]);
         });
     }
 
-    update(id: string, body) {
+    update(id: number, body: IShip) {
         this.http.put<IObject>(`${this.baseUrl}/${id}`, body).subscribe((response) => {
             this.details$.next(response);
             this.overview$.next(this.overview$.value.map((ship) => {
@@ -60,7 +64,7 @@ export class ShipsService {
         });
     }
   
-    delete(id: string) {
+    delete(id: number) {
         this.http.delete<IObject>(`${this.baseUrl}/${id}`).subscribe((response) => {
             this.overview$.next(
                 this.overview$.value.filter((ship) => ship.id != response.id)

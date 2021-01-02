@@ -1,1 +1,68 @@
-<p>general-presenter works!</p>
+<div class="apt-dialogTitle">
+    <h2 *ngIf="!isNew">{{ship.naam | titlecase}} bewerken</h2>
+    <h2 *ngIf="isNew">Schip aanmaken</h2>
+</div>
+<form [formGroup]="generalForm" (ngSubmit)="onSubmit(generalForm.value)">
+
+    <mat-form-field class="col-12 w-100">
+        <mat-label>Naam</mat-label>
+
+        <input matInput formControlName="naam" type="text">
+
+        <mat-error *ngIf="generalForm.controls['naam'].invalid">
+            Naam is vereist
+        </mat-error>
+    </mat-form-field>
+
+    <!-- TODO : Make this an option -->
+    <mat-form-field class="col-12 col-lg-6 w-100">
+        <mat-label>Rederij ID</mat-label>
+
+        <input matInput formControlName="rederijId" type="number">
+
+        <mat-error *ngIf="generalForm.controls['rederijId'].invalid">
+            Rederij is vereist
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-12 col-lg-6 w-100">
+        <mat-label>Capaciteit</mat-label>
+
+        <input matInput formControlName="capaciteit" type="number">
+
+        <mat-error *ngIf="generalForm.controls['capaciteit'].invalid">
+            Capaciteit is vereist
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-12 col-lg-6 w-100">
+        <mat-label>Startlocatie</mat-label>
+
+        <input matInput formControlName="startLocatie" type="text">
+
+        <mat-error *ngIf="generalForm.controls['startLocatie'].invalid">
+            Startlocatie is vereist
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-12 col-lg-6 w-100">
+        <mat-label>Eindlocatie</mat-label>
+
+        <input matInput formControlName="eindLocatie" type="text">
+
+        <mat-error *ngIf="generalForm.controls['eindLocatie'].invalid">
+            Eindlocatie is vereist
+        </mat-error>
+    </mat-form-field>
+    
+    <div class="float-right">
+        <button type="button" class="mr-2" mat-button (click)="onCloseDialog()">
+            Annuleren
+          </button>
+        <button mat-raised-button type="submit" color="primary"
+            [disabled]="!generalForm.dirty || generalForm.invalid">
+            <mat-icon class="mr-2">directions_boat</mat-icon>
+            <span>Bevestig</span>
+        </button>
+    </div>
+</form>

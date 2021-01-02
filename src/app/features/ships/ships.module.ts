@@ -7,6 +7,7 @@ import { InputGeneralPresenterComponent } from 'src/app/features/ships/component
 import { InputShellComponent } from 'src/app/features/ships/components/input/shell/shell.component';
 import { OverviewShellComponent } from 'src/app/features/ships/components/overview/shell/shell.component';
 import { ShipsService } from 'src/app/features/ships/services/ships.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ShipsService } from 'src/app/features/ships/services/ships.service';
   ],
   imports: [
     CommonModule,
-    ShipsRoutingModule
+    ShipsRoutingModule,
+    SharedModule
   ],
   providers: [
     ShipsService
