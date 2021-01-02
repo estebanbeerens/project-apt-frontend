@@ -6,6 +6,7 @@ import { OverviewGeneralPresenterComponent } from 'src/app/features/ships/compon
 import { InputGeneralPresenterComponent } from 'src/app/features/ships/components/input/general-presenter/general-presenter.component';
 import { InputShellComponent } from 'src/app/features/ships/components/input/shell/shell.component';
 import { OverviewShellComponent } from 'src/app/features/ships/components/overview/shell/shell.component';
+import { ShipsService } from 'src/app/features/ships/services/ships.service';
 
 
 @NgModule({
@@ -18,6 +19,9 @@ import { OverviewShellComponent } from 'src/app/features/ships/components/overvi
   imports: [
     CommonModule,
     ShipsRoutingModule
+  ],
+  providers: [
+    ShipsService
   ]
 })
 export class ShipsModule { }
