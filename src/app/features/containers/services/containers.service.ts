@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { IContainer as IObject, IContainerInitialValue as IObjectInitialValue } from "src/app/features/containers/interfaces/container";
+import { IContainer, IContainer as IObject, IContainerInitialValue as IObjectInitialValue } from "src/app/features/containers/interfaces/container";
 import { environment } from "src/environments/environment";
 
 @Injectable({
@@ -46,13 +46,13 @@ export class ContainersService {
         this.details$.next(IObjectInitialValue);
     }
 
-    create(body: any) {
+    create(body: IContainer) {
         this.http.post<IObject>(`${this.baseUrl}`, body).subscribe((response) => {
             this.overview$.next([...this.overview$.value, response]);
         });
     }
 
-    update(id: number, body) {
+    update(id: number, body: IContainer) {
         this.http.put<IObject>(`${this.baseUrl}/${id}`, body).subscribe((response) => {
             this.details$.next(response);
             this.overview$.next(this.overview$.value.map((container) => {

@@ -8,7 +8,7 @@
     </div>
 </div>
 
-<mat-table matSort [dataSource]="dataSource">
+<mat-table matSort [dataSource]="dataSource" *ngIf="containers.length > 0; else none">
 
     <ng-container matColumnDef="inhoud">
         <mat-header-cell *matHeaderCellDef mat-sort-header >Inhoud</mat-header-cell>
@@ -53,3 +53,6 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 </mat-table>
+<ng-template #none>
+    <p class="p-3">Er zijn geen schepen.</p>
+</ng-template>

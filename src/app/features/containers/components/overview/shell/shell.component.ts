@@ -18,14 +18,14 @@ export class OverviewShellComponent implements OnInit {
   containers$: Observable<IContainer[]>;
 
   constructor(
-    private containersService: ContainersService,
+    private service: ContainersService,
     private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
-    this.containersService.loadOverview();
-    this.isLoading$ = this.containersService.isLoading$.asObservable();
-    this.containers$ = this.containersService.overview$.asObservable();
+    this.service.loadOverview();
+    this.isLoading$ = this.service.isLoading$.asObservable();
+    this.containers$ = this.service.overview$.asObservable();
   }
 
   openDialog(): void {
@@ -35,17 +35,17 @@ export class OverviewShellComponent implements OnInit {
   }
 
   create(): void {
-    this.containersService.resetDetails();
+    this.service.resetDetails();
     this.openDialog();
   }
 
   edit(id: number): void {
-    this.containersService.loadDetails(id);
+    this.service.loadDetails(id);
     this.openDialog();
   }
 
   remove(id: number): void {
-    this.containersService.delete(id);
+    this.service.delete(id);
   }
 
 }

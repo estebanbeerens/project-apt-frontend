@@ -21,12 +21,12 @@ export class InputShellComponent implements OnInit, OnDestroy {
 
   constructor(
     private formBuilder: FormBuilder,
-    private containersService: ContainersService,
+    private service: ContainersService,
     public dialogRef: MatDialogRef<InputShellComponent>
   ) { }
 
   ngOnInit(): void {
-    this.container$ = this.containersService.details$;
+    this.container$ = this.service.details$;
 
     this.sub = this.container$.subscribe((container) => {
       this.loadForm(container);
@@ -56,9 +56,9 @@ export class InputShellComponent implements OnInit, OnDestroy {
 
   submitForm(formOutput: IContainer): void {
     if (this.isNew) {
-        this.containersService.create(formOutput);
+        this.service.create(formOutput);
     } else {
-      this.containersService.update(this.id, formOutput);
+      this.service.update(this.id, formOutput);
     }
     this.closeDialog();
   }
