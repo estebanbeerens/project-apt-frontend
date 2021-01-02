@@ -1,17 +1,17 @@
 export interface IShipyard {
     id: number;
-    name: string;
-    capaciteit: number;
-    startLocatie: string;
-    eindLocatie: string;
-    rederijId: number;
+    naam: string;
+    mail: string;
+    telefoon: string;
+    postcode: string;
+    gemeente: string;
 }
 
 export const IShipyardInitialValue : IShipyard = {
     id: 0,
-    name: '',
-    capaciteit: 0,
-    startLocatie: '',
-    eindLocatie: '',
-    rederijId: 0
-}
+    naam: '',
+    mail: '',
+    telefoon: '',
+    postcode: '',
+    gemeente: ''
+};
