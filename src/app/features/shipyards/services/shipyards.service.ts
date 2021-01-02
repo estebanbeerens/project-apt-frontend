@@ -51,11 +51,11 @@ export class ShipyardsService {
     update(id: string, body) {
         this.http.put<IObject>(`${this.baseUrl}/${id}`, body).subscribe((response) => {
             this.details$.next(response);
-            this.overview$.next(this.overview$.value.map((container) => {
-              if (container.id == response.id) {
-                container = response;
+            this.overview$.next(this.overview$.value.map((shipyard) => {
+              if (shipyard.id == response.id) {
+                shipyard = response;
               }
-              return container;
+              return shipyard;
             }));
         });
     }
@@ -63,7 +63,7 @@ export class ShipyardsService {
     delete(id: string) {
         this.http.delete<IObject>(`${this.baseUrl}/${id}`).subscribe((response) => {
             this.overview$.next(
-                this.overview$.value.filter((container) => container.id != response.id)
+                this.overview$.value.filter((shipyard) => shipyard.id != response.id)
             );
         });
     }
