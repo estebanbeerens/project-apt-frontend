@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'tlb-shared-toolbar',
+  selector: 'app-shared-toolbar',
   templateUrl: './shared-toolbar.component.html',
   styleUrls: ['./shared-toolbar.component.scss']
 })
