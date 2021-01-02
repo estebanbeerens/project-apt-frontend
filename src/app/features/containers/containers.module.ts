@@ -6,6 +6,7 @@ import { OverviewGeneralPresenterComponent } from 'src/app/features/containers/c
 import { OverviewShellComponent } from 'src/app/features/containers/components/overview/shell/shell.component';
 import { InputGeneralPresenterComponent } from 'src/app/features/containers/components/input/general-presenter/general-presenter.component';
 import { InputShellComponent } from 'src/app/features/containers/components/input/shell/shell.component';
+import { ContainersService } from 'src/app/features/containers/services/containers.service';
 
 
 @NgModule({
@@ -18,6 +19,9 @@ import { InputShellComponent } from 'src/app/features/containers/components/inpu
   imports: [
     CommonModule,
     ContainersRoutingModule
+  ],
+  providers: [
+    ContainersService
   ]
 })
 export class ContainersModule { }
