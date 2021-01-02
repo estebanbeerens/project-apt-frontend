@@ -1,1 +1,67 @@
-<p>general-presenter works!</p>
+<div class="apt-dialogTitle">
+    <h2 *ngIf="!isNew">{{shipyard.naam | titlecase}} bewerken</h2>
+    <h2 *ngIf="isNew">Rederij aanmaken</h2>
+</div>
+<form [formGroup]="generalForm" (ngSubmit)="onSubmit(generalForm.value)">
+
+    <mat-form-field class="col-12 w-100">
+        <mat-label>Naam</mat-label>
+
+        <input matInput formControlName="naam" type="text">
+
+        <mat-error *ngIf="generalForm.controls['naam'].invalid">
+            Naam is vereist
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-12 col-lg-6 w-100">
+        <mat-label>Email</mat-label>
+
+        <input matInput formControlName="mail" type="email">
+
+        <mat-error *ngIf="generalForm.controls['mail'].invalid">
+            Email is vereist
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-12 col-lg-6 w-100">
+        <mat-label>Telefoon</mat-label>
+
+        <input matInput formControlName="telefoon" type="tel">
+
+        <mat-error *ngIf="generalForm.controls['telefoon'].invalid">
+            Telefoon is vereist
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-3 w-100">
+        <mat-label>Postcode</mat-label>
+
+        <input matInput formControlName="postcode" type="text">
+
+        <mat-error *ngIf="generalForm.controls['postcode'].invalid">
+            Postcode is vereist
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-9 w-100">
+        <mat-label>Gemeente</mat-label>
+
+        <input matInput formControlName="gemeente" type="text">
+
+        <mat-error *ngIf="generalForm.controls['gemeente'].invalid">
+            Gemeente is vereist
+        </mat-error>
+    </mat-form-field>
+    
+    <div class="float-right">
+        <button type="button" class="mr-2" mat-button (click)="onCloseDialog()">
+            Annuleren
+          </button>
+        <button mat-raised-button type="submit" color="primary"
+            [disabled]="!generalForm.dirty || generalForm.invalid">
+            <mat-icon class="mr-2">anchor</mat-icon>
+            <span>Bevestig</span>
+        </button>
+    </div>
+</form>

@@ -7,6 +7,7 @@ import { InputShellComponent } from 'src/app/features/shipyards/components/input
 import { OverviewGeneralPresenterComponent } from 'src/app/features/shipyards/components/overview/general-presenter/general-presenter.component';
 import { OverviewShellComponent } from 'src/app/features/shipyards/components/overview/shell/shell.component';
 import { ShipyardsService } from 'src/app/features/shipyards/services/shipyards.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ShipyardsService } from 'src/app/features/shipyards/services/shipyards.
   ],
   imports: [
     CommonModule,
-    ShipyardsRoutingModule
+    ShipyardsRoutingModule,
+    SharedModule
   ],
   providers: [
     ShipyardsService

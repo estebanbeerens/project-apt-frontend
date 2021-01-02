@@ -1,1 +1,7 @@
-<p>shell works!</p>
+<app-input-general-presenter
+    [isNew]="isNew"
+    [generalForm]="generalForm"
+    [shipyard]="shipyard$ | async"
+    (closeDialog)="closeDialog()"
+    (submitForm)="submitForm($event)"
+></app-input-general-presenter>

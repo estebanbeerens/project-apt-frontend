@@ -1,1 +1,58 @@
-<p>general-presenter works!</p>
+<div class="row bg-white mx-0 pt-2">
+    <div class="col-12">
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-icon matPrefix>search</mat-icon>
+            <mat-label>Zoeken</mat-label>
+            <input matInput (keyup)="applySearchFilter($event)" >
+        </mat-form-field>
+    </div>
+</div>
+
+<mat-table matSort [dataSource]="dataSource" *ngIf="shipyards.length > 0; else none">
+
+    <ng-container matColumnDef="naam">
+        <mat-header-cell *matHeaderCellDef mat-sort-header >Naam</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.naam }}
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="mail">
+        <mat-header-cell *matHeaderCellDef mat-sort-header >Mail</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.mail }}
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="telefoon">
+        <mat-header-cell *matHeaderCellDef mat-sort-header >Telefoon</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.telefoon }}
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="gemeente">
+        <mat-header-cell *matHeaderCellDef mat-sort-header >Gemeente</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.gemeente }}
+        </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button (click)="edit(element.tagID)" mat-icon-button matTooltip="Bewerken" color="primary">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button (click)="remove(element.tagID)" mat-icon-button matTooltip="Verwijderen">
+          <mat-icon>delete_outline</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
+<ng-template #none>
+    <p class="p-3">Er zijn geen rederijen.</p>
+</ng-template>

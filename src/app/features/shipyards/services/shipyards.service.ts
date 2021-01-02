@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { IShipyard as IObject, IShipyardInitialValue as IObjectInitialValue } from "src/app/features/shipyards/interfaces/shipyard";
+import { IShipyard as IObject, IShipyard, IShipyardInitialValue as IObjectInitialValue } from "src/app/features/shipyards/interfaces/shipyard";
 import { environment } from "src/environments/environment";
 
 @Injectable({
@@ -27,7 +27,7 @@ export class ShipyardsService {
     }
 
     loadOverview() {
-        this._loaderInit();
+        // this._loaderInit();
         this.http.get<IObject[]>(`${this.baseUrl}/all`).subscribe((response) => {
             this.overview$.next(response);
             this._loaderStop();
@@ -42,13 +42,17 @@ export class ShipyardsService {
         });
     }
 
-    create(body: any) {
+    resetDetails() {
+        this.details$.next(IObjectInitialValue);
+    }
+
+    create(body: IShipyard) {
         this.http.post<IObject>(`${this.baseUrl}`, body).subscribe((response) => {
             this.overview$.next([...this.overview$.value, response]);
         });
     }
 
-    update(id: string, body) {
+    update(id: number, body: IShipyard) {
         this.http.put<IObject>(`${this.baseUrl}/${id}`, body).subscribe((response) => {
             this.details$.next(response);
             this.overview$.next(this.overview$.value.map((shipyard) => {
@@ -60,7 +64,7 @@ export class ShipyardsService {
         });
     }
   
-    delete(id: string) {
+    delete(id: number) {
         this.http.delete<IObject>(`${this.baseUrl}/${id}`).subscribe((response) => {
             this.overview$.next(
                 this.overview$.value.filter((shipyard) => shipyard.id != response.id)

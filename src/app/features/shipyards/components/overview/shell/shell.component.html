@@ -1,1 +1,12 @@
-<p>shell works!</p>
+<app-shared-spinner class="apt-spinner-overlay" *ngIf="isLoading$ | async"></app-shared-spinner>
+<div class="bg-white shadow">
+    <app-shared-toolbar
+        [title]="title | titlecase"
+        (clickedAdd)="create()"
+    ></app-shared-toolbar>
+    <app-overview-general-presenter
+        [shipyards]="shipyards$ | async"
+        (onEdit)="edit($event)"
+        (onRemove)="remove($event)"
+    ></app-overview-general-presenter>
+</div>
