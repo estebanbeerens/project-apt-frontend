@@ -5,7 +5,7 @@
 <form [formGroup]="generalForm" (ngSubmit)="onSubmit(generalForm.value)">
 
     <mat-form-field class="col-12 col-lg-6 w-100">
-        <mat-label>Schip ID</mat-label>
+        <mat-label>Schip</mat-label>
 
         <mat-select matInput formControlName="schipId">
             <mat-option *ngFor="let ship of shipDropdown" [value]="ship.id">{{ship.naam}}</mat-option>

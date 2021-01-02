@@ -4,6 +4,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Observable, Subscription } from 'rxjs';
 import { IShip } from 'src/app/features/ships/interfaces/ship';
 import { ShipsService } from 'src/app/features/ships/services/ships.service';
+import { IShipyard } from 'src/app/features/shipyards/interfaces/shipyard';
+import { ShipyardsService } from 'src/app/features/shipyards/services/shipyards.service';
 
 @Component({
   selector: 'app-shell',
@@ -13,6 +15,7 @@ import { ShipsService } from 'src/app/features/ships/services/ships.service';
 export class InputShellComponent implements OnInit, OnDestroy {
 
   ship$: Observable<IShip>;
+  shipyardDropdown$: Observable<IShipyard[]>;
 
   generalForm: FormGroup;
   id: number;
@@ -21,12 +24,15 @@ export class InputShellComponent implements OnInit, OnDestroy {
 
   constructor(
     private formBuilder: FormBuilder,
-    private service: ShipsService,
+    private shipsService: ShipsService,
+    private shipyardsService: ShipyardsService,
     public dialogRef: MatDialogRef<InputShellComponent>
   ) { }
 
   ngOnInit(): void {
-    this.ship$ = this.service.details$;
+    this.shipyardsService.loadOverview();
+    this.ship$ = this.shipsService.details$;
+    this.shipyardDropdown$ = this.shipyardsService.overview$;
 
     this.sub = this.ship$.subscribe((ship) => {
       this.loadForm(ship);
@@ -56,9 +62,9 @@ export class InputShellComponent implements OnInit, OnDestroy {
 
   submitForm(formOutput: IShip): void {
     if (this.isNew) {
-        this.service.create(formOutput);
+        this.shipsService.create(formOutput);
     } else {
-      this.service.update(this.id, formOutput);
+      this.shipsService.update(this.id, formOutput);
     }
     this.closeDialog();
   }
