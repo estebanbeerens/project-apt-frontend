@@ -9,8 +9,8 @@ export interface IContainer {
 
 export const IContainerInitialValue : IContainer = {
     id: 0,
-    schipId: 0,
-    gewicht: 0,
+    schipId: null,
+    gewicht: null,
     inhoud: '',
     startLocatie: '',
     eindLocatie: ''

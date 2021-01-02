@@ -9,7 +9,7 @@ import { environment } from "src/environments/environment";
 })
 export class ContainersService {
 
-    baseUrl = environment.apiUrl;
+    baseUrl = environment.apiUrl + ':5432';
 
     isLoading$ = new BehaviorSubject(false);
 

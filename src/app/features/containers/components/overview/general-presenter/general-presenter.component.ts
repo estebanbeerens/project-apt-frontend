@@ -20,7 +20,10 @@ export class OverviewGeneralPresenterComponent implements AfterViewInit, OnChang
 
   dataSource: MatTableDataSource<IContainer>;
   displayedColumns: string[] = [
-    'naam',
+    'inhoud',
+    'gewicht',
+    'startLocatie',
+    'eindLocatie',
     'actions'
   ];
 

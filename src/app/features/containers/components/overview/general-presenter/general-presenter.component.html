@@ -10,10 +10,31 @@
 
 <mat-table matSort [dataSource]="dataSource">
 
-    <ng-container matColumnDef="naam">
-        <mat-header-cell *matHeaderCellDef mat-sort-header >Naam</mat-header-cell>
+    <ng-container matColumnDef="inhoud">
+        <mat-header-cell *matHeaderCellDef mat-sort-header >Inhoud</mat-header-cell>
         <mat-cell *matCellDef="let element">
-          {{ element.naam }}
+          {{ element.inhoud }}
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="gewicht">
+        <mat-header-cell *matHeaderCellDef mat-sort-header >Gewicht</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.gewicht }}
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="startLocatie">
+        <mat-header-cell *matHeaderCellDef mat-sort-header >Startlocatie</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.startLocatie }}
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="eindLocatie">
+        <mat-header-cell *matHeaderCellDef mat-sort-header >Eindlocatie</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.eindLocatie }}
         </mat-cell>
     </ng-container>
   
