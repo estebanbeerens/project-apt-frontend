@@ -7,6 +7,7 @@ import { OverviewShellComponent } from 'src/app/features/containers/components/o
 import { InputGeneralPresenterComponent } from 'src/app/features/containers/components/input/general-presenter/general-presenter.component';
 import { InputShellComponent } from 'src/app/features/containers/components/input/shell/shell.component';
 import { ContainersService } from 'src/app/features/containers/services/containers.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ContainersService } from 'src/app/features/containers/services/containe
   ],
   imports: [
     CommonModule,
-    ContainersRoutingModule
+    ContainersRoutingModule,
+    SharedModule
   ],
   providers: [
     ContainersService

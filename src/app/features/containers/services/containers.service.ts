@@ -27,7 +27,7 @@ export class ContainersService {
     }
 
     loadOverview() {
-        this._loaderInit();
+        // this._loaderInit();
         this.http.get<IObject[]>(`${this.baseUrl}/all`).subscribe((response) => {
             this.overview$.next(response);
             this._loaderStop();
@@ -42,13 +42,17 @@ export class ContainersService {
         });
     }
 
+    resetDetails() {
+        this.details$.next(IObjectInitialValue);
+    }
+
     create(body: any) {
         this.http.post<IObject>(`${this.baseUrl}`, body).subscribe((response) => {
             this.overview$.next([...this.overview$.value, response]);
         });
     }
 
-    update(id: string, body) {
+    update(id: number, body) {
         this.http.put<IObject>(`${this.baseUrl}/${id}`, body).subscribe((response) => {
             this.details$.next(response);
             this.overview$.next(this.overview$.value.map((container) => {
@@ -60,7 +64,7 @@ export class ContainersService {
         });
     }
   
-    delete(id: string) {
+    delete(id: number) {
         this.http.delete<IObject>(`${this.baseUrl}/${id}`).subscribe((response) => {
             this.overview$.next(
                 this.overview$.value.filter((container) => container.id != response.id)
