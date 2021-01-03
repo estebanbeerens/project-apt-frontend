@@ -9,7 +9,7 @@ import { environment } from "src/environments/environment";
 })
 export class ShipsService {
 
-    baseUrl = environment.apiUrl;
+    baseUrl = environment.apiUrl + '/schepen';
 
     isLoading$ = new BehaviorSubject(false);
 
@@ -27,7 +27,7 @@ export class ShipsService {
     }
 
     loadOverview() {
-        // this._loaderInit();
+        this._loaderInit();
         this.http.get<IObject[]>(`${this.baseUrl}/all`).subscribe((response) => {
             this.overview$.next(response);
             this._loaderStop();
@@ -47,13 +47,13 @@ export class ShipsService {
     }
 
     create(body: IShip) {
-        this.http.post<IObject>(`${this.baseUrl}`, body).subscribe((response) => {
+        this.http.post<IObject>(`${this.baseUrl}/insert`, body).subscribe((response) => {
             this.overview$.next([...this.overview$.value, response]);
         });
     }
 
     update(id: number, body: IShip) {
-        this.http.put<IObject>(`${this.baseUrl}/${id}`, body).subscribe((response) => {
+        this.http.put<IObject>(`${this.baseUrl}/update`, body).subscribe((response) => {
             this.details$.next(response);
             this.overview$.next(this.overview$.value.map((ship) => {
               if (ship.id == response.id) {
@@ -65,7 +65,7 @@ export class ShipsService {
     }
   
     delete(id: number) {
-        this.http.delete<IObject>(`${this.baseUrl}/${id}`).subscribe((response) => {
+        this.http.delete<IObject>(`${this.baseUrl}/delete/${id}`).subscribe((response) => {
             this.overview$.next(
                 this.overview$.value.filter((ship) => ship.id != response.id)
             );

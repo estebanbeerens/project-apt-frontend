@@ -9,7 +9,7 @@ import { environment } from "src/environments/environment";
 })
 export class ContainersService {
 
-    baseUrl = environment.apiUrl;
+    baseUrl = environment.apiUrl + '/containers';
 
     isLoading$ = new BehaviorSubject(false);
 
@@ -27,7 +27,7 @@ export class ContainersService {
     }
 
     loadOverview() {
-        // this._loaderInit();
+        this._loaderInit();
         this.http.get<IObject[]>(`${this.baseUrl}/all`).subscribe((response) => {
             this.overview$.next(response);
             this._loaderStop();
@@ -46,14 +46,14 @@ export class ContainersService {
         this.details$.next(IObjectInitialValue);
     }
 
-    create(body: IContainer) {
-        this.http.post<IObject>(`${this.baseUrl}`, body).subscribe((response) => {
+    create(body: IObject) {
+        this.http.post<IObject>(`${this.baseUrl}/insert`, body).subscribe((response) => {
             this.overview$.next([...this.overview$.value, response]);
         });
     }
 
-    update(id: number, body: IContainer) {
-        this.http.put<IObject>(`${this.baseUrl}/${id}`, body).subscribe((response) => {
+    update(id: number, body: IObject) {
+        this.http.put<IObject>(`${this.baseUrl}/update`, body).subscribe((response) => {
             this.details$.next(response);
             this.overview$.next(this.overview$.value.map((container) => {
               if (container.id == response.id) {
@@ -65,7 +65,7 @@ export class ContainersService {
     }
   
     delete(id: number) {
-        this.http.delete<IObject>(`${this.baseUrl}/${id}`).subscribe((response) => {
+        this.http.delete<IObject>(`${this.baseUrl}/delete/${id}`).subscribe((response) => {
             this.overview$.next(
                 this.overview$.value.filter((container) => container.id != response.id)
             );

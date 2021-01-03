@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: ''
+  // TODO : Change port number
+  apiUrl: '192.168.99.100:30000'
 };
 
 /*
