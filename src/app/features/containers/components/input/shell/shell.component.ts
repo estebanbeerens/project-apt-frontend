@@ -30,8 +30,7 @@ export class InputShellComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    // TODO : Uncomment this
-    // this.shipsService.loadOverview();
+    this.shipsService.loadOverview();
     this.container$ = this.containersService.details$;
     this.shipDropdown$ = this.shipsService.overview$;
 
