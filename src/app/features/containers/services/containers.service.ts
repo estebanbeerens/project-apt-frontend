@@ -34,7 +34,7 @@ export class ContainersService {
         });
     }
 
-    loadDetails(id: number) {
+    loadDetails(id: string) {
         this._loaderInit();
         this.http.get<IObject>(`${this.baseUrl}/${id}`).subscribe((response) => {
             this.details$.next(response);
@@ -52,7 +52,7 @@ export class ContainersService {
         });
     }
 
-    update(id: number, body: IObject) {
+    update(id: string, body: IObject) {
         this.http.put<IObject>(`${this.baseUrl}/update`, body).subscribe((response) => {
             this.details$.next(response);
             this.overview$.next(this.overview$.value.map((container) => {
@@ -64,7 +64,7 @@ export class ContainersService {
         });
     }
   
-    delete(id: number) {
+    delete(id: string) {
         this.http.delete<IObject>(`${this.baseUrl}/delete/${id}`).subscribe((response) => {
             this.overview$.next(
                 this.overview$.value.filter((container) => container.id != response.id)

@@ -15,7 +15,7 @@ export class InputShellComponent implements OnInit {
   shipyard$: Observable<IShipyard>;
 
   generalForm: FormGroup;
-  id: number;
+  id: string;
   isNew: boolean;
   sub: Subscription;
 
@@ -36,7 +36,7 @@ export class InputShellComponent implements OnInit {
   
   defineIsNew(shipyard: IShipyard) {
     this.id = shipyard.id;
-    if (shipyard.id == 0 ){
+    if (shipyard.id == '' ){
       this.isNew = true;
     } else {
       this.isNew = false;

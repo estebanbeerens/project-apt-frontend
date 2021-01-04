@@ -1,5 +1,5 @@
 export interface IShipyard {
-    id: number;
+    id: string;
     naam: string;
     mail: string;
     telefoon: string;
@@ -8,7 +8,7 @@ export interface IShipyard {
 }
 
 export const IShipyardInitialValue : IShipyard = {
-    id: 0,
+    id: '',
     naam: '',
     mail: '',
     telefoon: '',

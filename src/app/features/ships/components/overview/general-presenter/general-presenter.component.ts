@@ -12,8 +12,8 @@ export class OverviewGeneralPresenterComponent implements AfterViewInit, OnChang
 
   @Input() ships: IShip[];
 
-  @Output() onEdit = new EventEmitter<number>();
-  @Output() onRemove = new EventEmitter<number>();
+  @Output() onEdit = new EventEmitter<string>();
+  @Output() onRemove = new EventEmitter<string>();
 
   @ViewChild(MatSort) sort: MatSort;
 
@@ -46,12 +46,12 @@ export class OverviewGeneralPresenterComponent implements AfterViewInit, OnChang
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  edit(tagID: number): void {
-    this.onEdit.emit(tagID);
+  edit(id: string): void {
+    this.onEdit.emit(id);
   }
 
-  remove(tagID: number): void {
-    this.onRemove.emit(tagID);
+  remove(id: string): void {
+    this.onRemove.emit(id);
   }
 
 }

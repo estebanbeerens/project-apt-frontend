@@ -34,7 +34,7 @@ export class ShipyardsService {
         });
     }
 
-    loadDetails(id: number) {
+    loadDetails(id: string) {
         this._loaderInit();
         this.http.get<IObject>(`${this.baseUrl}/${id}`).subscribe((response) => {
             this.details$.next(response);
@@ -52,7 +52,7 @@ export class ShipyardsService {
         });
     }
 
-    update(id: number, body: IShipyard) {
+    update(id: string, body: IShipyard) {
         this.http.put<IObject>(`${this.baseUrl}/update`, body).subscribe((response) => {
             this.details$.next(response);
             this.overview$.next(this.overview$.value.map((shipyard) => {
@@ -64,7 +64,7 @@ export class ShipyardsService {
         });
     }
   
-    delete(id: number) {
+    delete(id: string) {
         this.http.delete<IObject>(`${this.baseUrl}/delete/${id}`).subscribe((response) => {
             this.overview$.next(
                 this.overview$.value.filter((shipyard) => shipyard.id != response.id)

@@ -39,12 +39,12 @@ export class OverviewShellComponent implements OnInit {
     this.openDialog();
   }
 
-  edit(id: number): void {
+  edit(id: string): void {
     this.service.loadDetails(id);
     this.openDialog();
   }
 
-  remove(id: number): void {
+  remove(id: string): void {
     this.service.delete(id);
   }
 

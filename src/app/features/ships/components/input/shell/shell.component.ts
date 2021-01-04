@@ -18,7 +18,7 @@ export class InputShellComponent implements OnInit, OnDestroy {
   shipyardDropdown$: Observable<IShipyard[]>;
 
   generalForm: FormGroup;
-  id: number;
+  id: string;
   isNew: boolean;
   sub: Subscription;
 
@@ -42,7 +42,7 @@ export class InputShellComponent implements OnInit, OnDestroy {
   
   defineIsNew(ship: IShip) {
     this.id = ship.id;
-    if (ship.id == 0 ){
+    if (ship.id == '' ){
       this.isNew = true;
     } else {
       this.isNew = false;
