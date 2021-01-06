@@ -41,10 +41,10 @@
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <button (click)="edit(element.tagID)" mat-icon-button matTooltip="Bewerken" color="primary">
+        <button (click)="edit(element.naam)" mat-icon-button matTooltip="Bewerken" color="primary">
           <mat-icon>edit</mat-icon>
         </button>
-        <button (click)="remove(element.tagID)" mat-icon-button matTooltip="Verwijderen">
+        <button (click)="remove(element.id)" mat-icon-button matTooltip="Verwijderen">
           <mat-icon>delete_outline</mat-icon>
         </button>
       </mat-cell>

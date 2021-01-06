@@ -14,7 +14,7 @@ export class OverviewGeneralPresenterComponent implements AfterViewInit, OnChang
   @Input() containers: IContainer[];
 
   @Output() onEdit = new EventEmitter<string>();
-  @Output() onRemove = new EventEmitter<string>();
+  @Output() onRemove = new EventEmitter<number>();
 
   @ViewChild(MatSort) sort: MatSort;
 
@@ -51,7 +51,7 @@ export class OverviewGeneralPresenterComponent implements AfterViewInit, OnChang
     this.onEdit.emit(id);
   }
 
-  remove(id: string): void {
+  remove(id: number): void {
     this.onRemove.emit(id);
   }
 

@@ -1,5 +1,5 @@
 export interface IShip {
-    id: string;
+    id: number;
     naam: string;
     capaciteit: number;
     startLocatie: string;
@@ -8,7 +8,7 @@ export interface IShip {
 }
 
 export const IShipInitialValue : IShip = {
-    id: '',
+    id: 0,
     naam: '',
     capaciteit: null,
     startLocatie: '',

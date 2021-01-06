@@ -37,7 +37,7 @@ export class ShipsService {
     loadDetails(id: string) {
         this._loaderInit();
         this.http.get<IObject>(`${this.baseUrl}/${id}`).subscribe((response) => {
-            this.details$.next(response);
+            this.details$.next(response["schip"]);
             this._loaderStop();
         });
     }
@@ -52,7 +52,7 @@ export class ShipsService {
         });
     }
 
-    update(id: string, body: IShip) {
+    update(id: number, body: IShip) {
         this.http.put<IObject>(`${this.baseUrl}/update`, body).subscribe((response) => {
             this.details$.next(response);
             this.overview$.next(this.overview$.value.map((ship) => {
@@ -64,10 +64,10 @@ export class ShipsService {
         });
     }
   
-    delete(id: string) {
+    delete(id: number) {
         this.http.delete<IObject>(`${this.baseUrl}/delete/${id}`).subscribe((response) => {
             this.overview$.next(
-                this.overview$.value.filter((ship) => ship.id != response.id)
+                this.overview$.value.filter((ship) => ship.id != id)
             );
         });
     }

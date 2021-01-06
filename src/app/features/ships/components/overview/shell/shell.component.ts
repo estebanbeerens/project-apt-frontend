@@ -44,7 +44,7 @@ export class OverviewShellComponent implements OnInit {
     this.openDialog();
   }
 
-  remove(id: string): void {
+  remove(id: number): void {
     this.service.delete(id);
   }
 

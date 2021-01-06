@@ -1,5 +1,5 @@
 export interface IContainer {
-    id: string;
+    id: number;
     schipId: string;
     gewicht: number;
     inhoud: string;
@@ -8,7 +8,7 @@ export interface IContainer {
 }
 
 export const IContainerInitialValue : IContainer = {
-    id: '',
+    id: 0,
     schipId: '',
     gewicht: null,
     inhoud: '',

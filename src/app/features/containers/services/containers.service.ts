@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { IContainer, IContainer as IObject, IContainerInitialValue as IObjectInitialValue } from "src/app/features/containers/interfaces/container";
+import { IContainer as IObject, IContainerInitialValue as IObjectInitialValue } from "src/app/features/containers/interfaces/container";
 import { environment } from "src/environments/environment";
 
 @Injectable({
@@ -37,7 +37,7 @@ export class ContainersService {
     loadDetails(id: string) {
         this._loaderInit();
         this.http.get<IObject>(`${this.baseUrl}/${id}`).subscribe((response) => {
-            this.details$.next(response);
+            this.details$.next(response["container"]);
             this._loaderStop();
         });
     }
@@ -52,7 +52,7 @@ export class ContainersService {
         });
     }
 
-    update(id: string, body: IObject) {
+    update(id: number, body: IObject) {
         this.http.put<IObject>(`${this.baseUrl}/update`, body).subscribe((response) => {
             this.details$.next(response);
             this.overview$.next(this.overview$.value.map((container) => {
@@ -64,10 +64,10 @@ export class ContainersService {
         });
     }
   
-    delete(id: string) {
+    delete(id: number) {
         this.http.delete<IObject>(`${this.baseUrl}/delete/${id}`).subscribe((response) => {
             this.overview$.next(
-                this.overview$.value.filter((container) => container.id != response.id)
+                this.overview$.value.filter((container) => container.id != id)
             );
         });
     }

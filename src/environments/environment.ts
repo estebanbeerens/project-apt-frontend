@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   // TODO : Change port number
-  apiUrl: '192.168.99.100:30000'
+  apiUrl: 'http://192.168.99.100:30745'
 };
 
 /*
