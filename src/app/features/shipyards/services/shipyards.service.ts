@@ -54,13 +54,7 @@ export class ShipyardsService {
 
     update(id: string, body: IShipyard) {
         this.http.put<IObject>(`${this.baseUrl}/update`, body).subscribe((response) => {
-            this.details$.next(response);
-            this.overview$.next(this.overview$.value.map((shipyard) => {
-              if (shipyard.id == response.id) {
-                shipyard = response;
-              }
-              return shipyard;
-            }));
+            this.loadOverview();
         });
     }
   

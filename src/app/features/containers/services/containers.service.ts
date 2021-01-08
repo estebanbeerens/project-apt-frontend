@@ -54,13 +54,7 @@ export class ContainersService {
 
     update(id: number, body: IObject) {
         this.http.put<IObject>(`${this.baseUrl}/update`, body).subscribe((response) => {
-            this.details$.next(response);
-            this.overview$.next(this.overview$.value.map((container) => {
-              if (container.id == response.id) {
-                container = response;
-              }
-              return container;
-            }));
+            this.loadOverview();
         });
     }
   
